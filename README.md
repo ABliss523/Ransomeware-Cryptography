@@ -12,92 +12,82 @@ You will play the role of a cybersecurity analyst at Nakatomi Hospital.
 - Since you refuse to pay off any ransom, you'll have to solve six cryptographic riddles. Act fast: the doctors need to access the patient records as lives are at stake!
 
 ### Riddle 1
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle1.jpg)
 
-To solve the first riddle, you will need to use the Caesar (ROT) cipher.
-- The riddle hinted that the cipher used a rotation of 8. 
-- Therefore, each letter will be shifted to the left 8 characters in the alphabet.
-  - Note that there is also a website that can be used to decrypt the message: https://www.dcode.fr/rot-cipher. To use it, change the ROT value to 8.
-- Once decrypted, the answer will be `gruber`.
-- Once submitted, the following key will be provided: `6skd8s`.
+The first riddle uses the Caesar (ROT) cipher.
+- The cipher appears to have used a rotation of 8. 
+- The decryptions results in the word: `gruber`.
+- After submitting the decrypted cipher, the following key was given: `6skd8s`.
 
 ### Riddle 2
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle2.jpg)
 
-To solve the second riddle, the binary will need to be converted into a plaintext message.
+The second riddle is in binary, we will need to be convert it into a plaintext message.
 
-- you can do this manually, but the following website is available to convert the Binary into text: https://www.browserling.com/tools/text-to-binary
+- Once decryption of `01000111 01100101 01101110 01101110 01100101 01110010 01101111`  is the word: `Gennero`.
 
-- Once decrypted the Binary value of `01000111 01100101 01101110 01101110 01100101 01110010 01101111`  is `Gennero`.
-
-- Once submitted, the following key will be provided: `cy8snd2`.
+- After decrypting, the following key was given: `cy8snd2`.
 
 ### Riddle 3
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle3.jpg)
  
-To solve this riddle, you need to use OpenSSL in the Ubuntu VM.
-- First, add the ciphertext into a file with the following command:
+This third riddle will need to be done within the Ubuntu VM, we will use OpenSSL.
+- First, add the ciphertext into a file with the command:
   - `echo "4qMOIvwEGXzvkMvRE2bNbg==" > cipher.txt`
 
 - Then, the following openSSL command will then be ran against this file:
   - `openssl enc -pbkdf2 -nosalt -aes-256-cbc -d -in cipher.txt -base64 -K 5284A3B154D99487D9D8D8508461A478C7BEB67081A64AD9A15147906E8E8564 -iv 1907C5E255F7FC9A6B47B0E789847AED`
 
-- This will decrypt the ciphertext and display the cleartext message `takagi`.
-- Once submitted, the following key will be provided `ud6s98n`. 
+- This decrypts the ciphertext and displays the following message: `takagi`.
+- After decrypting, the following key was given: `ud6s98n`. 
 
 
 ### Riddle 4
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle4.jpg)
 
-For this riddle, you will need to answer four questions:
-1. Jack would use Jill's public key to encrypt a message that he will send to Jill. 
-
-2. Jill would decrypt this message with her private key.
-3. Six people total:
+The fourth riddle determines communication between public keys and determines the following:
+1. Jack uses Jill's public key to encrypt a message that will be sent to Jill. 
+2. Jill would then decrypt this message with her private key.
+3. For Jack, Jill, Bob, and Tim to exchange messages, they would need the following asymmetric and symmetric encryptions:
     - **Asymmetric** = 6 * 2 = 12 Keys
     - **Symmetric** = (6 * (6 -1))/2 = (6 * 5)/2 =  30/2 = 15 Keys
-4. Tim would only use someone else's public key to encrypt a message.  The only other person's public key is Alice. 
+4. If Tim sends an encrypted message to one of his friends, he would use someone else's public key to encrypt a message.
+5. The only other person's public key is Alice. 
   
-Once these questions are answered correctly, the following key will be provided: **7gsn3nd2**
+Once these questions are answered, the following key was given: **7gsn3nd2**
 
 ### Riddle 5
-
-
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle5.jpg)
 
   - **Hash:**  `3b75cdd826a16f5bba0076690f644dc7`
   
-**Solution** - 
+With the fifth riddle, we will use hashcat to crack the MD5 hash:
 
-For this riddle, you can use hashcat to crack the MD5 hash:
-
-- First, add this hash into a file with the following command:
+- First, add hash into a file with the command:
   - `echo "3b75cdd826a16f5bba0076690f644dc7"  > hash.txt`
 
-- Next, run hashcat to crack this hash with the following command:
+- Next, run hashcat to crack it with the command:
   - `hashcat -m 0 -a 0 -o solved.txt hash.txt /usr/share/rockyou.txt --force`
 
-- Inside the `solved.txt` file is the answer: `3b75cdd826a16f5bba0076690f644dc7:argyle`
+- Inside the `solved.txt` file was: `3b75cdd826a16f5bba0076690f644dc7:argyle`
 
-Once  `argyle` is submitted as the solution, they will be provided with the following key: `ajy39d2`. 
+When `argyle` is submitted as the solution, you are provided the following key: `ajy39d2`. 
  
 
 ### Riddle 6
+![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/riddle6.jpg)
 
-For this riddle, you need to use steghide to decrypt the hidden message inside the image.
-- First, download the image into you Ubuntu VM and then run the following command:
+The sixth riddle will require steghide to decrypt the hidden message inside an image.
+- First, download the image into your Ubuntu VM and use the command:
   - `steghide extract -sf mary-lamb.jpg`
-- It will then ask for the passphrase. The passphrase is written on the book in the image:  `ABC`.
-- After the passphrase is entered, the following file will be extracted: `code_is_inside_this_file.txt`.
-- Inside this file is the following code: `mcclane`
-- Once submitted, the following key will be provided: `7skahd6`.
+- This will prompt a requested passphrase, which is written on the book in the image:  `ABC`.
+- After entering the passphrase, the following file will be extracted: `code_is_inside_this_file.txt`.
+- Inside this file is the code: `mcclane`
+- After submitted the code given, the following key was provided: `7skahd6`.
 
 
 ## Ransomware Decrypted:
+After submitting all the keys, the following response was provided:
 
-The following keys need to be submitted in the decrypted:
-  - **Riddle 1**: `6skd8s`
-  - **Riddle 2**: `cy8snd2`
-  - **Riddle 3**: `ud6s98n`
-  - **Riddle 4**: `7gsn3nd2`
-  - **Riddle 5**: `ajy39d2`
-  - **Riddle 6**: `7skahd6`
-  
-After submitting all the keys, the following response will be provided:
+ ![](https://github.com/ABliss523/Ransomeware-Cryptography/blob/main/Ransomeware%20Riddles/Ransomeware%20Decrypter.PNG)
 
-`Congratulations!  You have decrypted the Ransomware!  All the Nakatomi Hospital Records are now Decrypted! Please take a screenshot of this message and submit as your homework!`
